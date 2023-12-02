@@ -3,7 +3,8 @@
 //  HomeWorkIOS
 //
 //  Created by Герман Яренко on 22.11.23.
-//
+//51805360
+
 
 import UIKit
 import WebKit
@@ -20,7 +21,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         
-        let url = URL(string: "https://oauth.vk.com/authorize?client_id=    51805360&redirect_uri=https://oauth.vk.com/blank.html&display=mobile&scope=262150&response_type=token")
+        let url = URL(string:
+                        "https://oauth.vk.com/authorize?client_id=51797989&redirect_uri=https://oauth.vk.com/blank.html&display=mobile&scope=262150&response_type=token")
         webView.load(URLRequest(url: url!))
     }
     

@@ -14,6 +14,8 @@
 //  Created by Andrey Zavershinskiy on 21.11.2023.
 //
 
+
+
 import UIKit
 
 final class NetworkService {
@@ -58,16 +60,16 @@ final class NetworkService {
         }.resume()
     }
     
-    func getProfileData(completion: @escaping (Profile) -> Void) {
-        guard let url = URL(string: "https://api.vk.com/method/account.getProfileInfo?access_token=\(NetworkService.token)&v=5.199") else { return }
+    func getProfileData(completion: @escaping (Profile?) -> Void) {
+            guard let url = URL(string: "https://api.vk.com/method/account.getProfileInfo?access_token=\(NetworkService.token)&v=5.199") else { return }
+            
+            session.dataTask(with: url) { (data, _, error) in
+                guard let data = data else { return }
+                do {
+                    let person = try JSONDecoder().decode(ProfileModel.self, from: data).response
+                    completion(person)
+                } catch { print(error) }
+            }.resume()
+        }
         
-        session.dataTask(with: url) { (data, _, error) in
-            guard let data = data else { return }
-            do {
-                let person = try JSONDecoder().decode(ProfileModel.self, from: data).response
-                completion(person)
-            } catch { print(error) }
-        }.resume()
     }
-    
-}

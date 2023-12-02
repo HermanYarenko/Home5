@@ -39,6 +39,12 @@ final class FriendsViewController: UITableViewController {
 
 private extension FriendsViewController {
     @objc func goToProfileViewController() {
-        navigationController?.pushViewController(ProfileViewController(), animated: true)
+        let transition = CATransition()
+        transition.duration = 1
+        transition.type = CATransitionType.fade
+        transition.subtype = CATransitionSubtype.fromBottom
+        navigationController?.view.layer.add(transition, forKey: kCATransition)
+        
+        navigationController?.pushViewController(ProfileViewController(), animated: false)
     }
 }
